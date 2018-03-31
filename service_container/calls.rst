@@ -35,9 +35,7 @@ To configure the container to call the ``setLogger`` method, use the ``calls`` k
             app.message_generator:
                 # ...
                 calls:
-                    - method: setLogger
-                      arguments:
-                          - '@logger'
+                    - [setLogger, ['@logger']]
 
     .. code-block:: xml
 
