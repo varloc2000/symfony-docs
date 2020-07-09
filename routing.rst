@@ -227,6 +227,16 @@ Use the ``methods`` option to restrict the verbs each route should respond to:
 
 .. tip::
 
+
+    ``GET`` and ``POST`` methods considered as equivalent .. _as per RFC: https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html . It might lead to unexpected route matching when using both methods for same resource. For example having two routes configured
+    api_users_get_item GET /users/{id} with ``id`` requirements as ``\d+`` (only digits)
+    api_users_head_item HEAD /users/{email} with ``email`` requirement as ``[^/]`` (any string)
+Request ``curl -X HEAD "/users/2"`` will be matched to GET route instead of HEAD regardless it's method.
+
+
+
+.. tip::
+
     HTML forms only support ``GET`` and ``POST`` methods. If you're calling a
     route with a different method from an HTML form, add a hidden field called
     ``_method`` with the method to use (e.g. ``<input type="hidden" name="_method" value="PUT"/>``).
